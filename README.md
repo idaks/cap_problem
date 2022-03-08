@@ -1,5 +1,5 @@
 # CAP problem
-
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/idaks/cap_problem/HEAD)
 ## Introduction
 In this repo, we are trying to show three demos
 One group contains k_color_demo and k_cap_problem, where we will discuss how can we ensure whether one graph/instance is k-colorable/k-allocable or the minium to 
