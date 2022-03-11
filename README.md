@@ -1,13 +1,13 @@
 # CAP problem
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/idaks/cap_problem/HEAD)
 ## Introduction
-In this repo, we are trying to show several demos to cover classic coloring problem (col) and container allocation problem (cap) where we will discuss:
+In this repo, we are trying to show several demos to cover classic coloring problem (COL) and container allocation problem (CAP) where we will discuss:
 
 - Given k colors, whether one graph is colorable and the minimum k to make it colorable
 - With k boxes (containers), whether an instance is allocable and the minimum k to make it allocable
 
 Besides this, we provide a demo to illustrate 
-- how can we use Answer Set Programming (ASP) to verify that k-col can be reduced to k-cap
+- how can we use Answer Set Programming (ASP) to verify that k-COL can be reduced to k-CAP
 
 ## Binder
 we provide binder for easy use without installing any packages locally
