@@ -1,0 +1,42 @@
+Consider a 2-colorable graph DB2 and we check whether it is 2-colorable or not with the usual rules:
+
+% clingo -n0 DB2.lp gen2col.lp test2col.lp | grep -e good -e bad | sort | uniq -c
+   6 bad
+   2 good
+
+=> This means that for this graph 6 bad colorings were generated and 2 good colorings => 2 colorable, yes!
+
+Now if we add the saturation rules:
+
+  color(V,black) :- bad, v(V).
+  color(V,white) :- bad, v(V).
+
+and run clingo again, we get the following (surprising!) answer: 
+
+% clingo -n0 DB2.lp gen2col.lp test2col.lp saturation.lp | grep -e good -e bad | sort | uniq -c
+   2 good
+
+Where did the 6 bad colorings go??
+When adding the saturation rules, the coloring that was already determined to be bad, should STAY bad.
+I would have expected the 6 bad colorings to become one "super-bad" coloring (where every node has all the colors)
+But instead there is NO single bad answer. Why???
+
+I suspect this has something to do with the model not being stable or minimal in some sense.. ?? 
+
+When replacing the disjunction (choice) in the head with the
+old-fashioned double negation (see: gen2col_neg), we get the same behavior: 
+
+% clingo -n0 DB2.lp gen2col_neg.lp test2col.lp  | grep -e good -e bad | sort | uniq -c
+clingo -n0 DB2.lp gen2col_neg.lp test2col.lp  | grep -e good -e bad | sort | uniq -c
+   6 bad
+   2 good
+
+As expected: there are good an bad colorings.
+When adding saturation rules, why are the 6 bad colorings not mapped to a single (super-)bad coloring?? 
+
+% clingo -n0 DB2.lp gen2col_neg.lp test2col.lp saturation.lp | grep -e good -e bad | sort | uniq -c
+clingo -n0 DB2.lp gen2col_neg.lp test2col.lp saturation.lp | grep -e good -e bad | sort | uniq -c
+   2 good
+
+
+
